@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -9,7 +11,34 @@ class Screen2 extends StatefulWidget {
 }
 
 class _Screen2State extends State<Screen2> {
-  int selectedContentIndex = -1; // 선택한 컨텐츠 인덱스
+  final ScrollController _scrollController = ScrollController();
+  Timer? _scrollTimer;
+
+  @override
+  void initState() {
+    super.initState();
+    // 화면을 초기에 아래로 자동 스크롤 시작
+    _startAutoScroll();
+  }
+
+  void _startAutoScroll() {
+    _scrollTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (_scrollController.hasClients) {
+        _scrollController.animateTo(
+          _scrollController.position.maxScrollExtent,
+          duration: const Duration(seconds: 30),
+          curve: Curves.easeOut,
+        );
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _scrollTimer?.cancel();
+    _scrollController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,156 +54,138 @@ class _Screen2State extends State<Screen2> {
           },
         ),
       ),
-      body: Stack(
-        fit: StackFit.expand,
-        children: [
-          Lottie.asset(
-            'assets/background_lotti.json',
-            repeat: true,
-            animate: true,
+      body: SingleChildScrollView(
+        controller: _scrollController,
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              //_buildTitle(),
+              _buildSubTitle(),
+            ],
           ),
-          SingleChildScrollView(
-            child: Row(
-              children: [
-                const Expanded(
-                  flex: 1,
-                  child: SizedBox(width: 10),
-                ),
-                Expanded(
-                  flex: 1,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      _buildTitle(),
-                      const SizedBox(height: 30),
-                      _buildContentButtons(),
-                      _buildSelectedContent(),
-                    ],
-                  ),
-                ),
-                const Expanded(
-                  flex: 1,
-                  child: SizedBox(width: 10),
-                ),
-              ],
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }
 
   // 제목을 생성하는 함수
   Widget _buildTitle() {
-    return const Align(
-      alignment: Alignment.topLeft,
-      child: Text(
-        '디지털 교육',
-        style: TextStyle(
-          fontSize: 40,
-          fontWeight: FontWeight.bold,
-          fontFamily: 'BMHANNA',
-          color: Color.fromARGB(255, 255, 255, 255),
+    return const Text(
+      '소개',
+      style: TextStyle(
+        fontSize: 40,
+        fontWeight: FontWeight.bold,
+        fontFamily: 'BMHANNA',
+        color: Color.fromARGB(255, 255, 255, 255),
+      ),
+    );
+  }
+
+  // 제목을 생성하는 함수
+  Widget _buildSubTitle() {
+    return const Column(
+      children: [
+        SizedBox(
+          height: 30,
         ),
-      ),
-    );
-  }
-
-  // 컨텐츠 버튼을 생성하는 함수
-  Widget _buildContentButtons() {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 32.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          _buildContentButton(0, '컨텐츠 1'),
-          _buildContentButton(1, '컨텐츠 2'),
-          _buildContentButton(2, '컨텐츠 3'),
-        ],
-      ),
-    );
-  }
-
-  // 선택한 컨텐츠를 생성하는 함수
-  Widget _buildSelectedContent() {
-    if (selectedContentIndex == 0) {
-      return _buildContent1();
-    } else if (selectedContentIndex == 1) {
-      return _buildContent2();
-    } else if (selectedContentIndex == 2) {
-      return _buildContent3();
-    }
-    // 선택된 컨텐츠가 없는 경우 빈 Container를 반환
-    return Container();
-  }
-
-  // 컨텐츠 버튼을 생성하는 함수
-  Widget _buildContentButton(int index, String text) {
-    return InkWell(
-      onTap: () {
-        setState(() {
-          selectedContentIndex = index;
-        });
-      },
-      child: Text(
-        text,
-        style: TextStyle(
-          fontSize: 24,
-          fontWeight: FontWeight.bold,
-          fontFamily: 'BMHANNA',
-          color: selectedContentIndex == index
-              ? Colors.blue
-              : const Color.fromARGB(255, 255, 255, 255),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildContent1() {
-    return SingleChildScrollView(
-      child: Container(
-        width: double.infinity,
-        color: Colors.white.withOpacity(0),
-        child: const Text(
-          '컨텐츠 1의 내용을 여기에 표시합니다.',
+        Text(
+          '저희는',
           style: TextStyle(
-            fontSize: 20,
+            fontSize: 25,
+            fontWeight: FontWeight.bold,
+            fontFamily: 'BMHANNA',
             color: Color.fromARGB(255, 255, 255, 255),
           ),
         ),
-      ),
-    );
-  }
-
-  Widget _buildContent2() {
-    return SingleChildScrollView(
-      child: Container(
-        width: double.infinity,
-        color: Colors.white.withOpacity(0),
-        child: const Text(
-          '컨텐츠 2의 내용을 여기에 표시합니다.',
+        SizedBox(
+          height: 15,
+        ),
+        Text(
+          '지방과 수도의 인프라 간극화를 줄이기 위해',
           style: TextStyle(
-            fontSize: 20,
+            fontSize: 25,
+            fontWeight: FontWeight.bold,
+            fontFamily: 'BMHANNA',
             color: Color.fromARGB(255, 255, 255, 255),
           ),
         ),
-      ),
-    );
-  }
-
-  Widget _buildContent3() {
-    return SingleChildScrollView(
-      child: Container(
-        width: double.infinity,
-        color: Colors.white.withOpacity(0),
-        child: const Text(
-          '컨텐츠 3의 내용을 여기에 표시합니다.',
+        SizedBox(
+          height: 15,
+        ),
+        Text(
+          '지방도 수도처럼 만들겠다는 포부로',
           style: TextStyle(
-            fontSize: 20,
+            fontSize: 25,
+            fontWeight: FontWeight.bold,
+            fontFamily: 'BMHANNA',
             color: Color.fromARGB(255, 255, 255, 255),
           ),
         ),
-      ),
+        SizedBox(
+          height: 15,
+        ),
+        Text(
+          '수도 주도를 운영합니다.',
+          style: TextStyle(
+            fontSize: 25,
+            fontWeight: FontWeight.bold,
+            fontFamily: 'BMHANNA',
+            color: Color.fromARGB(255, 255, 255, 255),
+          ),
+        ),
+        //구분짓기
+        SizedBox(
+          height: 30,
+        ),
+        Text(
+          '저희는',
+          style: TextStyle(
+            fontSize: 25,
+            fontWeight: FontWeight.bold,
+            fontFamily: 'BMHANNA',
+            color: Color.fromARGB(255, 255, 255, 255),
+          ),
+        ),
+        SizedBox(
+          height: 15,
+        ),
+        Text(
+          '지방과 수도의 인프라 간극화를 줄이기 위해',
+          style: TextStyle(
+            fontSize: 25,
+            fontWeight: FontWeight.bold,
+            fontFamily: 'BMHANNA',
+            color: Color.fromARGB(255, 255, 255, 255),
+          ),
+        ),
+        SizedBox(
+          height: 15,
+        ),
+        Text(
+          '지방도 수도처럼 만들겠다는 포부로',
+          style: TextStyle(
+            fontSize: 25,
+            fontWeight: FontWeight.bold,
+            fontFamily: 'BMHANNA',
+            color: Color.fromARGB(255, 255, 255, 255),
+          ),
+        ),
+        SizedBox(
+          height: 15,
+        ),
+        Text(
+          '수도 주도를 운영합니다.',
+          style: TextStyle(
+            fontSize: 25,
+            fontWeight: FontWeight.bold,
+            fontFamily: 'BMHANNA',
+            color: Color.fromARGB(255, 255, 255, 255),
+          ),
+        ),
+        SizedBox(height: 1000), // 화면 자동 스크롤을 위한 높은 여백 추가
+      ],
     );
   }
 }

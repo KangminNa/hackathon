@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:hackathon/screens/login_screen.dart';
 import 'package:hackathon/screens/screen1.dart';
 import 'package:hackathon/screens/screen2.dart';
 import 'package:hackathon/screens/screen3.dart';
 import 'package:hackathon/screens/screen4.dart';
 import 'package:hackathon/screens/screen5.dart';
+import 'package:hackathon/screens/screen6.dart';
 
 void main() => runApp(const MyApp());
 
@@ -30,8 +32,9 @@ class MyApp extends StatelessWidget {
         '/home': (context) => const Screen1(),
         '/screen2': (context) => const Screen2(),
         '/screen3': (context) => const Screen3(),
-        '/screen4': (context) => const Screen4(),
-        '/screen5': (context) => const Screen5(),
+        '/screen4': (context) => Screen4(),
+        '/screen5': (context) => Screen5(),
+        '/screen6': (context) => const Screen6(),
       },
     );
   }

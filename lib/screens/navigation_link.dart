@@ -36,25 +36,22 @@ class _NavigationLinkState extends State<NavigationLink> {
       },
       child: GestureDetector(
         onTap: () => Navigator.pushNamed(context, widget.routeName),
-        child: Align(
-          alignment: Alignment.centerLeft,
-          child: Column(
-            children: [
-              Text(
-                widget.text,
-                style: TextStyle(
-                  color: isHovered
-                      ? Colors.blue // 마우스 호버 시 파란색으로 변경
-                      : const Color.fromARGB(255, 225, 225, 225),
-                  fontSize: 20,
-                  fontFamily: 'BMHANNA',
-                ),
+        child: Column(
+          children: [
+            Text(
+              widget.text,
+              style: TextStyle(
+                color: isHovered
+                    ? Colors.blue // 마우스 호버 시 파란색으로 변경
+                    : const Color.fromARGB(255, 225, 225, 225),
+                fontSize: 20,
+                fontFamily: 'BMHANNA',
               ),
-              const SizedBox(
-                height: 64,
-              )
-            ],
-          ),
+            ),
+            const SizedBox(
+              height: 64,
+            )
+          ],
         ),
       ),
     );

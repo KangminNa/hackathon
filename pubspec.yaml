@@ -38,6 +38,7 @@ dependencies:
   lottie:
   firebase_core: ^2.16.0
   servicestack: ^2.0.3
+  firebase_auth: ^4.10.0
 
 dev_dependencies:
   flutter_test:
@@ -69,6 +70,7 @@ flutter:
     - assets/fonts/BMJUA_otf.otf
     - assets/fonts/BMKIRANGHAERANG-OTF.otf
     - assets/fonts/BMYEONSUNG_otf.otf
+    - assets/images/test_image.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
