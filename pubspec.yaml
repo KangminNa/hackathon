@@ -71,6 +71,15 @@ flutter:
     - assets/fonts/BMKIRANGHAERANG-OTF.otf
     - assets/fonts/BMYEONSUNG_otf.otf
     - assets/images/test_image.jpeg
+    - assets/images/test_video_image.png
+    - assets/images/index_0.jpeg
+    - assets/images/index_1.jpeg
+    - assets/images/index_2.jpeg
+    - assets/images/index_3.jpeg
+    - assets/images/index_4.jpeg
+    - assets/images/index_5.jpeg
+    - assets/images/index_6.jpeg
+    - assets/images/index_7.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

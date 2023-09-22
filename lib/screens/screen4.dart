@@ -3,52 +3,56 @@ import 'package:flutter/material.dart';
 class Screen4 extends StatelessWidget {
   Screen4({super.key});
 
-  // 더미 데이터
-  final List<Map<String, String>> dummyData = [
+  final List<Map<String, dynamic>> dummyData = [
     {
-      'title': '가온해 로운 나비잠.',
+      'writer': '김민지',
+      'title': '정부지원금이 궁금합니다.',
       'content':
-          'eunoia twinkle way cresent stella requiem lucid twilight destiny haze illusion world flora blush baby flutter lucy illusion moonlight carnival droplet flora florence droplet miracle eunoia ice you cherish vanilla flutter like lovesick haze vanilla milky moonlight haze stella milky destiny flutter lovable eunoia lucy flora bijou aurora blossom honey.'
+          '안녕하세요. 당사는 판넬제조 중소 업체입니다. 2021년 12월 국토교통부가 고시한 건축자재 및 품질인정 관리기준 강화에 맞추어 한달에 한두번   판넬 화재 예비 시험을 하고 있습니다. 아래 기사내용을 확인해 보시면 알겠지만 시험에 통과한다는 것은  하늘의 별따기 처럼 어려운게 현실이라 계속해서 예비시험을 통해  문제점을 보안하고 다시 수정하여 예비시험을 하고 이런 상황이 반복적입니다. 하지만 예비시험에서도 100%로가 합격이라면,  전국 모든 판넬제조업체가 40%도 채우지 못하고  탈락하고 있는 실정입니다. 법이 잘못되어 현실적으로 합격한다는 것은 너무도 어려운 상황입니다. 그런데 문제는 제품판매도 못하고 있는 상황인데,  예비시험을 한번 할 때마다  건당 5백만원씩 비용이 발생하고 있는 상황입니다. 그렇다고 비용이 부담되어 예비시험을 하지 않고,  바로 본 시험을 하게 되어  본시험에서 탈락하게 된다면 6개월을 또 기다려야 하는 상황이기에,   어쩔수 없이  예비시험을 계속하면서 문제점을 보안해 가면서 하는 방법 밖에는 없습니다. 혹시 이러한 예비시험에 대한 중소기업지원 지원을 받을 수 있는 방법이 없을까요?',
     },
     {
-      'title': '달볓 소솜 그루잠.',
+      'writer': '김성환',
+      'title': '공장문의',
       'content':
-          'milky flora twilight flutter seraphic apple girlish seraphic lucy apple adorable you bijou melody purity miracle eunoia honey masquerade kitten ice honey iris moonlight twilight heimish apple ideale masquerade laptop ice iris destiny carnival apple heimish grapes heimish requiem sunrise eunoia twilight blush banana purity flutter pure miracle flora grapes.'
+          '안녕하세요 저희는 해남군 영농조합법인 회사입니다. 저희가 해남 쌀을 활용하여 햇반을 제작하려고 하는데, 일단 1만개~1만 5천개 정도 생산하여 판매하고 반응을 살펴보고 싶은데 생산이 가능한 공장이 없을까하여 문의드립니다.',
     },
     {
-      'title': '예그리나 포도 사과.',
+      'writer': '박예원',
+      'title': '사내용 DB 구축',
       'content':
-          'blossom like cherish cresent lucy eunoia ice melody blossom aurora melody aurora carnival lovable purity florence heimish vanilla ice vanilla droplet florence stella serendipity like illusion cherish apple hello bijou marshmallow milky flora seraphic honey melody honey kitten apple blush moonlight way flora cherish grapes moonlight twilight lucy blossom like.'
+          '회사 내부적으로 자료를 축적하고 향후 쉽게 찾을 수 있는 좋은 방법이 있는지 고민 중입니다. 업무 관련된 노하우 등을 분야별로 정리해서 축적해 놓고 필요시 검색(AND, OR 등)기능을 통해 바로바로 자료를 바로 찾을 수 있는 프로그램이면 될 것 같습니다. 엑셀, 워드, 아래아한글로 관리하기에는 좀 불편할 것 같습니다. 혹시 추천해주실 프로그램(또는사이트, 클라우드 서비스 등)이 있으면 부탁드립니다. 감사합니다.',
     },
-    // Firebase에서 데이터를 가져와서 이와 유사한 형식으로 구성해야 합니다.
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 31, 31, 31),
+      backgroundColor: const Color.fromARGB(255, 0, 0, 0),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.pushReplacementNamed(context, '/home'); // /home으로 이동
           },
         ),
       ),
-      body: SingleChildScrollView(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              _buildTitle(),
-              const SizedBox(
-                height: 80,
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            _buildTitle(),
+            const SizedBox(
+              height: 40,
+            ),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: _buildListView(context),
               ),
-              _buildListView(context),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
@@ -89,21 +93,35 @@ class Screen4 extends StatelessWidget {
                 ),
               );
             },
-            child: ListTile(
-              title: Text(item['title']!),
-              subtitle: _buildContent(context, item['content']!), // context를 전달
-              trailing: const Column(
+            child: Container(
+              child: Column(
                 children: [
-                  SizedBox(
-                    height: 5,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        item['title']!,
+                        style: const TextStyle(
+                            fontFamily: 'BMHANNA',
+                            fontSize: 20,
+                            color: Colors.white),
+                      ),
+                      const Icon(
+                        size: 15,
+                        Icons.arrow_forward,
+                        color: Colors.white,
+                      ),
+                    ],
                   ),
-                  Icon(
-                    Icons.arrow_forward,
-                    color: Colors.white,
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  _buildContent(context, item['content']!), // context를 전달
+                  const SizedBox(
+                    height: 60,
                   ),
                 ],
               ),
-              textColor: Colors.white,
             ),
           );
         },
@@ -114,30 +132,28 @@ class Screen4 extends StatelessWidget {
   Widget _buildContent(BuildContext context, String content) {
     if (content.length <= 150) {
       // Content가 150자 이하인 경우 그대로 표시
-      return Text(content);
+      return Text(
+        content,
+        style: const TextStyle(
+          fontFamily: 'BMHANNA',
+          fontSize: 15,
+          color: Colors.white,
+        ),
+        textAlign: TextAlign.left,
+      );
     } else {
       // Content가 150자를 넘어갈 경우 ...더 보기 버튼 추가
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('${content.substring(0, 150)}...'),
-          TextButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => DetailScreen(
-                    item: {'title': '상세 내용', 'content': content},
-                    parentContext: context, // context를 전달
-                  ),
-                ),
-              );
-            },
-            child: const Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Text('더 보기'),
-              ],
+          SizedBox(
+            width: 360,
+            child: Text(
+              '${content.substring(0, 150)}  ...더보기',
+              style: const TextStyle(
+                fontFamily: 'BMHANNA',
+                color: Colors.white,
+              ),
             ),
           ),
         ],
@@ -147,7 +163,7 @@ class Screen4 extends StatelessWidget {
 }
 
 class DetailScreen extends StatelessWidget {
-  final Map<String, String> item;
+  final Map<String, dynamic> item;
   final BuildContext parentContext; // BuildContext를 추가
 
   const DetailScreen(
@@ -156,11 +172,200 @@ class DetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
-        title: Text(item['title']!),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
       ),
-      body: Center(
-        child: Text(item['content']!),
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            const SizedBox(
+              height: 40,
+            ),
+            Detail_Title(item: item),
+            // 댓글 보기 및 작성 컨테이너 추가
+            DetailComments(
+              item: item,
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class DetailComments extends StatelessWidget {
+  final Map<String, dynamic> item;
+  const DetailComments({
+    super.key,
+    required this.item,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: Container(
+        // 댓글 컨테이너 스타일 및 크기 설정
+        width: double.infinity,
+        height: 500,
+        padding: const EdgeInsets.all(16.0),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(16.0),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Text(
+              '댓글',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'BMHANNA',
+              ),
+            ),
+            const SizedBox(height: 16.0), // 댓글 목록과 입력창 사이의 간격 조절
+
+            const Column(
+              children: [
+                SizedBox(
+                  height: 100,
+                ),
+              ],
+            ),
+
+            // 댓글 작성 버튼
+            Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  _showLoginRequiredDialog(context);
+                  // 사용자가 로그인한 상태인지 확인
+                  // bool isLoggedIn = true; // TODO: 실제 로그인 상태 확인 로직 추가
+
+                  // if (isLoggedIn) {
+                  //   //로그인한 경우 댓글 작성 화면으로 이동
+                  //   Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //       builder: (context) => CommentScreen(), // 댓글 작성 화면
+                  //     ),
+                  //   );
+                  // } else {
+                  //   // 로그인하지 않은 경우 로그인이 필요하다는 다이얼로그 표시
+                  //   _showLoginRequiredDialog(context);
+                  // }
+                },
+                child: const Text("댓글 작성"),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// 사용자가 댓글을 작성하려고 할 때 로그인이 필요하다는 다이얼로그 표시
+void _showLoginRequiredDialog(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (context) {
+      return AlertDialog(
+        title: const Text("로그인이 필요합니다"),
+        content: const Text("관리자에게 기업 인증 후 로그인을 하세요."),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop(); // 다이얼로그 닫기
+            },
+            child: const Text("확인"),
+          ),
+        ],
+      );
+    },
+  );
+}
+
+class Detail_Title extends StatelessWidget {
+  const Detail_Title({
+    super.key,
+    required this.item,
+  });
+
+  final Map<String, dynamic> item;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(32.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            item['title']!,
+            style: const TextStyle(
+              fontSize: 30,
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontFamily: 'BMHANNA',
+            ),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Row(
+            children: [
+              const Text(
+                '작성자 : ',
+                style: TextStyle(
+                  fontSize: 10,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'BMHANNA',
+                ),
+              ),
+              Text(
+                item['writer']!,
+                style: const TextStyle(
+                  fontSize: 10,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'BMHANNA',
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 40),
+          const Text(
+            '내용',
+            style: TextStyle(
+              fontSize: 15,
+              color: Colors.white,
+              fontFamily: 'BMHANNA',
+            ),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Text(
+            item['content']!,
+            style: const TextStyle(
+              fontSize: 20,
+              color: Colors.white,
+              fontFamily: 'BMHANNA',
+            ),
+          ),
+        ],
       ),
     );
   }

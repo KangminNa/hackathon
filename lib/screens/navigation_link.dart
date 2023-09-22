@@ -44,7 +44,7 @@ class _NavigationLinkState extends State<NavigationLink> {
                 color: isHovered
                     ? Colors.blue // 마우스 호버 시 파란색으로 변경
                     : const Color.fromARGB(255, 225, 225, 225),
-                fontSize: 20,
+                fontSize: 15,
                 fontFamily: 'BMHANNA',
               ),
             ),

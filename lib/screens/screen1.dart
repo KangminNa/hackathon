@@ -32,8 +32,7 @@ class Screen1 extends StatelessWidget {
             bottom: 0,
             child: SingleChildScrollView(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   MainTitleWidget(),
                   NavigationLink(
@@ -77,12 +76,12 @@ class MainTitleWidget extends StatelessWidget {
       child: const Column(
         children: [
           SizedBox(
-            height: 30,
+            height: 100,
           ),
           Text(
             '수도는 우리가',
             style: TextStyle(
-              fontSize: 50,
+              fontSize: 40,
               fontWeight: FontWeight.bold,
               fontFamily: 'BMHANNA',
               color: Color.fromARGB(255, 255, 255, 255),
@@ -94,19 +93,19 @@ class MainTitleWidget extends StatelessWidget {
           Text(
             '주도한다',
             style: TextStyle(
-              fontSize: 50,
+              fontSize: 40,
               fontFamily: 'BMHANNA',
               fontWeight: FontWeight.bold,
               color: Color.fromARGB(255, 255, 255, 255),
             ),
           ),
           SizedBox(
-            height: 20,
+            height: 40,
           ),
           Text(
             '수도주도',
             style: TextStyle(
-              fontSize: 100,
+              fontSize: 80,
               fontWeight: FontWeight.bold,
               color: Color.fromARGB(255, 255, 255, 255),
             ),
@@ -114,7 +113,7 @@ class MainTitleWidget extends StatelessWidget {
           Text(
             '지방 기업 협력 플랫폼',
             style: TextStyle(
-              fontSize: 25,
+              fontSize: 20,
               fontWeight: FontWeight.bold,
               color: Color.fromARGB(255, 255, 255, 255),
             ),
