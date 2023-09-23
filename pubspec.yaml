@@ -39,6 +39,7 @@ dependencies:
   firebase_core: ^2.16.0
   servicestack: ^2.0.3
   firebase_auth: ^4.10.0
+  url_launcher: ^6.0.9
 
 dev_dependencies:
   flutter_test:

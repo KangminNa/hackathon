@@ -1,16 +1,38 @@
 import 'package:flutter/material.dart';
 import 'dart:ui';
-
-import 'package:hackathon/screens/navigation_link.dart'; // ImageFilter를 사용하기 위해 추가
+import 'package:url_launcher/url_launcher.dart';
+import 'package:hackathon/screens/navigation_link.dart';
 
 class Screen1 extends StatelessWidget {
   const Screen1({Key? key}) : super(key: key);
+
+  // Function to launch a URL
+  void _launchURL(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.transparent,
-      appBar: null,
+      appBar: AppBar(
+        backgroundColor: Colors.black, // 검정색 배경
+        title: null, // 제목을 표시하지 않음
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.login), // 원하는 아이콘 사용
+            onPressed: () {
+              // 로그인 아이콘을 눌렀을 때 지정한 URL로 이동
+              const loginURL = "https://admin-hackaton.web.app/"; // 원하는 URL로 변경
+              _launchURL(loginURL);
+            },
+          ),
+        ],
+      ),
       body: Stack(
         fit: StackFit.expand,
         children: [
