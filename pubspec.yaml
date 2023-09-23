@@ -80,6 +80,7 @@ flutter:
     - assets/images/index_5.jpeg
     - assets/images/index_6.jpeg
     - assets/images/index_7.jpeg
+    - assets/images/test.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

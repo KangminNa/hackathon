@@ -43,7 +43,7 @@ class _Screen2State extends State<Screen2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 31, 31, 31),
+      backgroundColor: const Color.fromARGB(255, 0, 0, 0),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -54,75 +54,83 @@ class _Screen2State extends State<Screen2> {
           },
         ),
       ),
-      body: SingleChildScrollView(
-        controller: _scrollController,
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(32.0),
-                child: Column(
-                  children: [
-                    _buildTitle1(),
-                    const SizedBox(
-                      height: 70,
-                    ),
-                    _buildSubShort1(),
-                    _buildSubShort2(),
-                  ],
-                ),
-              ), //저희는
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/test.png'), // 이미지 파일 경로
+            fit: BoxFit.cover, // 이미지를 화면에 꽉 채우도록 설정
+          ),
+        ),
+        child: SingleChildScrollView(
+          controller: _scrollController,
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(32.0),
+                  child: Column(
+                    children: [
+                      _buildTitle1(),
+                      const SizedBox(
+                        height: 70,
+                      ),
+                      _buildSubShort1(),
+                      _buildSubShort2(),
+                    ],
+                  ),
+                ), //저희는
 
-              const SizedBox(
-                height: 100,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  children: [
-                    _buildTitle2(),
-                    const SizedBox(
-                      height: 70,
-                    ),
-                    _buildSubShort3(),
-                  ],
+                const SizedBox(
+                  height: 100,
                 ),
-              ), // 목표
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    children: [
+                      _buildTitle2(),
+                      const SizedBox(
+                        height: 70,
+                      ),
+                      _buildSubShort3(),
+                    ],
+                  ),
+                ), // 목표
 
-              const SizedBox(
-                height: 100,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(32.0),
-                child: Column(
-                  children: [
-                    _buildTitle3(),
-                    const SizedBox(
-                      height: 70,
-                    ),
-                    _buildSubShort4(),
-                  ],
+                const SizedBox(
+                  height: 100,
                 ),
-              ), // 전략 및 계획
+                Padding(
+                  padding: const EdgeInsets.all(50.0),
+                  child: Column(
+                    children: [
+                      _buildTitle3(),
+                      const SizedBox(
+                        height: 70,
+                      ),
+                      _buildSubShort4(),
+                    ],
+                  ),
+                ), // 전략 및 계획
 
-              const SizedBox(
-                height: 100,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: Column(
-                  children: [
-                    _buildTitle4(),
-                    const SizedBox(
-                      height: 70,
-                    ),
-                    _buildSubShort6()
-                  ],
+                const SizedBox(
+                  height: 100,
                 ),
-              ), // 기대효과
-            ],
+                Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Column(
+                    children: [
+                      _buildTitle4(),
+                      const SizedBox(
+                        height: 70,
+                      ),
+                      _buildSubShort6()
+                    ],
+                  ),
+                ), // 기대효과
+              ],
+            ),
           ),
         ),
       ),
@@ -448,7 +456,6 @@ class _Screen2State extends State<Screen2> {
                 fontFamily: 'BMHANNA',
                 color: Color.fromARGB(255, 255, 255, 255),
               ),
-              textAlign: TextAlign.center,
             ),
           ],
         ),
@@ -477,7 +484,6 @@ class _Screen2State extends State<Screen2> {
                 fontFamily: 'BMHANNA',
                 color: Color.fromARGB(255, 255, 255, 255),
               ),
-              textAlign: TextAlign.center,
             ),
           ],
         ),

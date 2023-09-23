@@ -100,59 +100,72 @@ class Screen3 extends StatelessWidget {
     );
   }
 
-  // 각각의 카드를 생성하는 함수
   Widget _buildCard(Map<String, dynamic> item, int index) {
     final String imagePath =
         'assets/images/index_$index.jpeg'; // 인덱스에 따른 이미지 파일 경로 생성
-    return Container(
-      margin:
-          const EdgeInsets.only(top: 4.0, bottom: 32.0, right: 8.0, left: 8.0),
-      padding: const EdgeInsets.all(8.0),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10.0),
-        image: DecorationImage(
-          image: AssetImage(imagePath), // 이미지 경로 지정
-          fit: BoxFit.cover, // 이미지를 가득 채우도록 설정
-          opacity: 0.3,
+    return Stack(
+      children: [
+        Container(
+          margin: const EdgeInsets.only(
+              top: 4.0, bottom: 32.0, right: 8.0, left: 8.0),
+          padding: const EdgeInsets.all(8.0),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10.0),
+            image: DecorationImage(
+              image: AssetImage(imagePath), // 이미지 경로 지정
+              fit: BoxFit.cover, // 이미지를 가득 채우도록 설정
+            ),
+          ),
         ),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            item['title'],
-            style: const TextStyle(
-              fontSize: 25,
-              fontWeight: FontWeight.bold,
-              fontFamily: 'BMHANNA',
-              color: Color.fromRGBO(255, 255, 255, 1),
-            ),
-            textAlign: TextAlign.center,
+        // 흐림 효과를 위한 Container
+        Container(
+          margin: const EdgeInsets.only(
+              top: 4.0, bottom: 32.0, right: 8.0, left: 8.0),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10.0),
+            color: Colors.black.withOpacity(0.5), // 흐림 효과를 위한 색상 및 불투명도 조절
           ),
-          const SizedBox(
-            height: 20,
+        ),
+        Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                item['title'],
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'BMHANNA',
+                  color: Color.fromRGBO(255, 255, 255, 1),
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Text(
+                item['subtitle'],
+                style: const TextStyle(
+                  fontSize: 10,
+                  fontFamily: 'BMHANNA',
+                  color: Color.fromRGBO(255, 255, 255, 1),
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 8),
+              Text(
+                item['tag'],
+                style: const TextStyle(
+                  fontSize: 8,
+                  fontFamily: 'BMHANNA',
+                  color: Color.fromARGB(255, 255, 255, 255),
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ],
           ),
-          Text(
-            item['subtitle'],
-            style: const TextStyle(
-              fontSize: 15,
-              fontFamily: 'BMHANNA',
-              color: Color.fromRGBO(255, 255, 255, 1),
-            ),
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 8),
-          Text(
-            item['tag'],
-            style: const TextStyle(
-              fontSize: 8,
-              fontFamily: 'BMHANNA',
-              color: Color.fromARGB(255, 255, 255, 255),
-            ),
-            textAlign: TextAlign.center,
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 

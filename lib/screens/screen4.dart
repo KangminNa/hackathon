@@ -95,6 +95,7 @@ class Screen4 extends StatelessWidget {
             },
             child: Container(
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -132,14 +133,18 @@ class Screen4 extends StatelessWidget {
   Widget _buildContent(BuildContext context, String content) {
     if (content.length <= 150) {
       // Content가 150자 이하인 경우 그대로 표시
-      return Text(
-        content,
-        style: const TextStyle(
-          fontFamily: 'BMHANNA',
-          fontSize: 15,
-          color: Colors.white,
-        ),
-        textAlign: TextAlign.left,
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            content,
+            style: const TextStyle(
+              fontFamily: 'BMHANNA',
+              fontSize: 15,
+              color: Colors.white,
+            ),
+          ),
+        ],
       );
     } else {
       // Content가 150자를 넘어갈 경우 ...더 보기 버튼 추가

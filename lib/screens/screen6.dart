@@ -39,7 +39,7 @@ class Screen6 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 31, 31, 31),
+      backgroundColor: const Color.fromARGB(255, 0, 0, 0),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
